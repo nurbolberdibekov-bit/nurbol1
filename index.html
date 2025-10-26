@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>SCA-24c</title>
   <link rel="icon" href="images/logo.jpg">
   <link rel="stylesheet" href="style.css">
@@ -32,7 +32,6 @@
 
   <main>
     <div class="main-layout">
-      <!-- Левая карточка профиля -->
       <div class="profile-card">
         <div class="avatar">
           <img src="images/myphoto.jpg" alt="Profile Avatar">
@@ -104,60 +103,53 @@
           <form action="action_page.php" method="POST">
               <div>
                     <label for="fname">first name:</label>
-                    <input type="text" id="fname" name="fname" placeholder="Satoru" required>
+                    <input type="text" id="fname" name="fname" placeholder="Satoru" required autocomplete="given-name">
               </div>
-
-              <br>
 
               <div>
                     <label for="lname">last name:</label>
-                    <input type="text" id="lname" name="lname" placeholder="Gojo" required>
+                    <input type="text" id="lname" name="lname" placeholder="Gojo" required autocomplete="family-name">
               </div>
-
-              <br>
 
               <div>
                   <label for="email">email:</label>
-                  <input type="email" id="email" name="email" placeholder="satoru.gojo@example.com">
+                  <input type="email" id="email" name="email" placeholder="satoru.gojo@example.com" autocomplete="email">
               </div>
-
-              <br>
 
               <div>
                   <label for="pass">password:</label>
-                  <input type="password" id="pass" name="pass" maxlength="10" placeholder="1234567890">
+                  <input type="password" id="pass" name="pass" maxlength="10" placeholder="1234567890" autocomplete="new-password">
               </div>
-
-              <br>
 
               <div>
                   <label for="phone">phone #:</label>
-                  <input type="tel" id="phone" name="phone" placeholder="(123) 456-789">
+                  <input type="tel" id="phone" name="phone" placeholder="(123) 456-789" autocomplete="tel">
               </div>
-
-              <br>
 
               <div>
                   <label for="bdate">birthdate:</label>
-                  <input type="date" id="bdate" name="bdate">
+                  <input type="date" id="bdate" name="bdate" autocomplete="bday">
               </div>
-
-              <br>
 
               <div>
                   <p class="form-paragraph">title: </p>
+                  <div class="radio-group">
+                    <label for="Mr.">
+                      <input type="radio" id="Mr." name="title" value="Mr.">
+                      Mr.
+                    </label>
 
-                  <label for="Mr.">Mr.</label>
-                  <input type="radio" id="Mr." name="title" value="Mr.">
+                    <label for="Mrs.">
+                      <input type="radio" id="Mrs." name="title" value="Mrs.">
+                      Mrs.
+                    </label>
 
-                  <label for="Mrs.">Mrs.</label>
-                  <input type="radio" id="Mrs." name="title" value="Mrs.">
-
-                  <label for="PhD.">PhD.</label>
-                  <input type="radio" id="PhD." name="title" value="PhD.">
+                    <label for="PhD.">
+                      <input type="radio" id="PhD." name="title" value="PhD.">
+                      PhD.
+                    </label>
+                  </div>
               </div>
-
-              <br>
 
               <div>
                   <label for="payment">payment:</label>
@@ -168,23 +160,16 @@
                   </select>
               </div>
 
-              <br>
-
               <div>
-                  <label for="subscribe">subscribe:</label>
-                  <input type="checkbox" id="subscribe" name="subscribe">
+                  <label for="subscribe">
+                    <input type="checkbox" id="subscribe" name="subscribe">
+                    subscribe
+                  </label>
               </div>
 
-              <br>
-
-              <div>
-                  <input type="reset">
-              </div>
-
-              <br>
-
-              <div>
-                  <input type="submit">
+              <div class="form-buttons">
+                  <input type="reset" value="Reset">
+                  <input type="submit" value="Submit">
               </div>
 
           </form>
@@ -212,7 +197,6 @@
     </div>
   </footer>
 
-  <!-- Scroll to top button -->
   <button id="scrollToTop" class="scroll-to-top" title="Scroll to top">↑</button>
 
   <script src="main.js"></script>
