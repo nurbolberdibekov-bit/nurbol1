@@ -1,4 +1,3 @@
-// ===== ФУНКЦИОНАЛЬНОСТЬ ПРИВЕТСТВИЯ ПОЛЬЗОВАТЕЛЯ =====
 const g = document.getElementById('greeting');
 const btn = document.getElementById('askName');
 
@@ -21,11 +20,9 @@ function askName() {
 btn.addEventListener('click', askName);
 showGreeting(localStorage.getItem('visitorName'));
 
-// ===== ФУНКЦИОНАЛЬНОСТЬ ПЕРЕКЛЮЧЕНИЯ ТЕМ =====
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
 
-// Функция для переключения темы
 function toggleTheme() {
     const currentTheme = body.getAttribute('data-theme');
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
@@ -33,27 +30,21 @@ function toggleTheme() {
     body.setAttribute('data-theme', newTheme);
     localStorage.setItem('theme', newTheme);
     
-    // Обновляем иконку
     themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
 }
 
-// Загружаем сохраненную тему при загрузке страницы
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme') || 'light';
     body.setAttribute('data-theme', savedTheme);
     themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 }
 
-// Добавляем обработчик события
 themeToggle.addEventListener('click', toggleTheme);
 
-// Загружаем тему при загрузке страницы
 loadTheme();
 
-// ===== ФУНКЦИОНАЛЬНОСТЬ КНОПКИ СКРОЛЛА ВВЕРХ =====
 const scrollToTopBtn = document.getElementById('scrollToTop');
 
-// Функция для показа/скрытия кнопки скролла
 function toggleScrollButton() {
     if (window.pageYOffset > 300) {
         scrollToTopBtn.classList.add('visible');
@@ -62,7 +53,6 @@ function toggleScrollButton() {
     }
 }
 
-// Функция для плавного скролла вверх
 function scrollToTop() {
     window.scrollTo({
         top: 0,
@@ -70,14 +60,11 @@ function scrollToTop() {
     });
 }
 
-// Добавляем обработчики событий
 window.addEventListener('scroll', toggleScrollButton);
 scrollToTopBtn.addEventListener('click', scrollToTop);
 
-// Проверяем начальную позицию скролла
 toggleScrollButton();
 
-// ===== HAMBURGER MENU =====
 const hamburgerBtn = document.getElementById('hamburger');
 const siteNav = document.getElementById('site-nav');
 
@@ -85,6 +72,12 @@ function setMenuState(isOpen) {
     hamburgerBtn.classList.toggle('is-active', isOpen);
     siteNav.classList.toggle('open', isOpen);
     hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+    
+    if (isOpen) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
 }
 
 function toggleMenu() {
@@ -92,15 +85,56 @@ function toggleMenu() {
     setMenuState(isOpen);
 }
 
-hamburgerBtn.addEventListener('click', toggleMenu);
+hamburgerBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    toggleMenu();
+});
 
-// Close menu when clicking a link (mobile)
 siteNav.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', () => setMenuState(false));
 });
 
-// Close on Escape
+document.addEventListener('click', (e) => {
+    if (siteNav.classList.contains('open') && 
+        !siteNav.contains(e.target) && 
+        !hamburgerBtn.contains(e.target)) {
+        setMenuState(false);
+    }
+});
+
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') setMenuState(false);
 });
 
+window.addEventListener('orientationchange', () => {
+    setTimeout(() => setMenuState(false), 100);
+});
+
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function (event) {
+    const now = (new Date()).getTime();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, false);
+
+let ticking = false;
+function updateScrollButton() {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+    ticking = false;
+}
+
+function requestTick() {
+    if (!ticking) {
+        requestAnimationFrame(updateScrollButton);
+        ticking = true;
+    }
+}
+
+window.removeEventListener('scroll', toggleScrollButton);
+window.addEventListener('scroll', requestTick, { passive: true });
