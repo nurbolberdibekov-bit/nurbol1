@@ -1,4 +1,3 @@
-/* CSS Variables for theming */
 :root {
   --bg-color: #ffffff;
   --text-color: #1a1a2e;
@@ -15,7 +14,6 @@
   --shadow: rgba(0, 0, 0, 0.1);
 }
 
-/* Dark theme variables */
 [data-theme="dark"] {
   --bg-color: #1a1a2e;
   --text-color: #ffffff;
@@ -43,6 +41,10 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .containers {
   max-width: 1000px;
@@ -51,9 +53,9 @@ body {
   padding: 50px;
   border-radius: 50px;
   transition: background-color 0.3s ease;
+  box-sizing: border-box;
 }
 
-/* Header и навигация */
 header {
   background: var(--header-bg);
   color: var(--header-text);
@@ -82,7 +84,6 @@ nav a:hover {
   color: var(--nav-text);
 }
 
-/* Заголовки и выделения */
 h1, h2, h3 {
   color: var(--text-color);
   transition: color 0.3s ease;
@@ -92,7 +93,6 @@ h1, h2, h3 {
   font-weight: bold;
 }
 
-/* Изображения */
 img {
   max-width: 140px;
   border-radius: 10px;
@@ -103,7 +103,6 @@ img:hover {
   transform: scale(1.05);
 }
 
-/* Кнопка */
 .btn {
   display: inline-block;
   background: #1a1a2e;
@@ -119,7 +118,6 @@ img:hover {
   transform: translateY(-2px);
 }
 
-/* Header controls */
 .header-controls {
   margin: 10px 0;
 }
@@ -142,7 +140,6 @@ img:hover {
   box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
 }
 
-/* Scroll to top button */
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
@@ -174,7 +171,6 @@ img:hover {
   box-shadow: 0 6px 20px rgba(74, 144, 226, 0.4);
 }
 
-/* Footer */
 footer {
   margin-top: 100px;
   text-align: center;
@@ -184,8 +180,6 @@ footer {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* ===================== */
-/* ✅ Таблица */
 .info-table {
   width: 100%;
   border-collapse: collapse;
@@ -221,8 +215,6 @@ footer {
   background: #e8d5f2;
 }
 
-/* ===================== */
-/* ✅ Медиа */
 .media {
   margin: 16px 0;
 }
@@ -237,23 +229,20 @@ footer {
   margin-top: 6px;
 }
 
-/* Видео подстраивается под ширину контейнера */
 .video-fluid {
   display: block;
   width: 100%;
-  height: auto;          /* сохраняет пропорции файла */
-  max-width: 100%;       /* на всякий случай */
+  height: auto;
+  max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-/* Если пропорции «прыгают» — зафиксируй 16:9 */
 .video-fluid {
-  aspect-ratio: 16 / 9;  /* современный способ */
-  object-fit: contain;   /* или cover, если нужно заполнение с обрезкой */
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
 }
 
-/* Form styles */
 form {
   background: #f8f9fa;
   padding: 30px;
@@ -306,42 +295,214 @@ form input[type="submit"]:hover, form input[type="reset"]:hover {
   transform: translateY(-2px);
 }
 
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.radio-group label:hover {
+  background-color: #f0f0f0;
+}
+
+.radio-group input[type="radio"] {
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.form-buttons input {
+  flex: 1;
+  margin: 0;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+  margin-bottom: 0;
+}
+
+label[for="subscribe"] {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+label[for="subscribe"]:hover {
+  background-color: #f0f0f0;
+}
 
 @media (max-width: 768px) {
   body {
-    margin: 20px;
+    padding: 10px;
+    font-size: 16px;
   }
 
   .containers {
     padding: 20px;
     border-radius: 20px;
+    margin: 0;
   }
 
   nav ul {
     flex-direction: column;
     gap: 10px;
+    padding: 10px 0;
+  }
+
+  nav a {
+    padding: 12px 20px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 8px;
   }
 
   img {
     max-width: 100%;
+    height: auto;
   }
 
-  .video {
-  max-width: 16px;
+  .avatar img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .video-fluid {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
   }
 
   .info-table {
     font-size: 14px;
     display: block;
     overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .info-table th,
+  .info-table td {
+    padding: 10px 15px;
+    min-width: 120px;
+  }
+
+  form {
+    padding: 20px;
+    margin: 0;
+  }
+
+  form input, form select {
+    width: 100%;
+    max-width: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  form input[type="submit"], form input[type="reset"] {
+    width: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+  h1 {
+    font-size: 20px;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  footer {
+    padding: 20px 10px;
+    font-size: 16px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .theme-toggle {
+    padding: 12px 15px;
+    font-size: 20px;
+  }
+
+  #askName {
+    padding: 15px 20px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .scroll-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  section {
+    margin-bottom: 30px;
+  }
+
+  .profile-info h3 {
+    font-size: 18px;
+  }
+
+  .social-icons {
+    gap: 20px;
+  }
+
+  .social-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
   }
 }
 
-/* ===================== */
-/* Portfolio Styles */
-/* ===================== */
-
-/* Main layout for portfolio */
 .main-layout {
   display: flex;
   max-width: 1200px;
@@ -350,7 +511,6 @@ form input[type="submit"]:hover, form input[type="reset"]:hover {
   min-height: 70vh;
 }
 
-/* Profile card */
 .profile-card {
   background: var(--profile-bg);
   border-radius: 20px;
@@ -442,13 +602,11 @@ form input[type="submit"]:hover, form input[type="reset"]:hover {
   color: var(--bg-color);
 }
 
-/* Main content area */
 .main-content {
   flex: 1;
   min-width: 0;
 }
 
-/* Updated header styles */
 header {
   background: var(--header-bg);
   color: var(--header-text);
@@ -459,7 +617,6 @@ header {
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Greeting functionality styles */
 #greeting {
   font-size: 18px;
   color: #4a90e2;
@@ -537,7 +694,6 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
-/* Updated containers */
 .containers {
   max-width: 100%;
   margin: 0;
@@ -548,7 +704,6 @@ nav a:hover {
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Updated footer */
 footer {
   background-color: var(--footer-bg);
   color: var(--footer-text);
@@ -581,7 +736,6 @@ footer {
   font-size: 16px;
 }
 
-/* Background pattern */
 .main-content::after {
   content: '';
   position: absolute;
@@ -605,33 +759,50 @@ footer {
   }
 }
 
-/* Responsive design for portfolio */
 @media (max-width: 768px) {
   .main-layout {
     flex-direction: column;
     gap: 20px;
+    padding: 0;
   }
   
   .profile-card {
     width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: none;
+    margin: 0;
     position: static;
+    padding: 30px 20px;
+    border-radius: 15px;
   }
   
-  .footer-content {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
+  .main-content {
+    padding: 0;
   }
-  
-  .contact-info {
-    flex-direction: column;
+
+  .main-content::after {
+    display: none;
+  }
+
+  header {
+    padding: 15px 10px;
+    margin-bottom: 15px;
+  }
+
+  .header-controls {
+    margin: 15px 0;
+    display: flex;
+    justify-content: center;
     gap: 15px;
+    align-items: center;
+  }
+
+  #greeting {
+    font-size: 16px;
+    padding: 8px 16px;
+    margin: 8px 0;
   }
 }
 
-/* Hamburger button */
 .hamburger {
   display: none;
   background: transparent;
@@ -639,6 +810,8 @@ footer {
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .hamburger .bar {
   display: block;
@@ -649,41 +822,216 @@ footer {
   transition: transform 0.3s ease, opacity 0.3s ease, background-color 0.3s ease;
 }
 
-/* Mobile nav container */
-.site-nav {
-  transition: max-height 0.3s ease, opacity 0.3s ease;
+button, .btn, .theme-toggle, #askName, .scroll-to-top {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  min-height: 44px;
+  min-width: 44px;
 }
 
-/* Responsive behavior */
 @media (max-width: 768px) {
-  nav ul {
+  button, .btn, .theme-toggle, #askName {
+    min-height: 48px;
+    padding: 12px 20px;
+  }
+
+  .btn:hover, .theme-toggle:hover, #askName:hover {
+    transform: none;
+  }
+
+  .btn:active, .theme-toggle:active, #askName:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+
+  nav a, .social-icon {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  form input, form select {
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 8px;
+  }
+
+  .info-table {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  .social-icon:active {
+    transform: scale(0.95);
+  }
+
+  input[type="radio"], input[type="checkbox"] {
+    min-width: 20px;
+    min-height: 20px;
+    margin-right: 10px;
+  }
+
+  form label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .form-buttons {
     flex-direction: column;
     gap: 10px;
   }
 
-  .hamburger {
-    display: inline-block;
+  .radio-group {
+    gap: 8px;
   }
 
-  /* Collapse nav by default on mobile */
+  .radio-group label {
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  label[for="subscribe"] {
+    padding: 12px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .main-layout {
+    gap: 30px;
+  }
+  
+  .profile-card {
+    width: 300px;
+    padding: 30px 20px;
+  }
+  
+  .containers {
+    padding: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 5px;
+    font-size: 14px;
+  }
+
+  .containers {
+    padding: 15px;
+    border-radius: 15px;
+  }
+
+  .profile-card {
+    padding: 20px 15px;
+  }
+
+  .avatar img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .profile-info h2 {
+    font-size: 16px;
+  }
+
+  .profile-info h3 {
+    font-size: 14px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  form {
+    padding: 15px;
+  }
+
+  .info-table th,
+  .info-table td {
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .social-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+
+.site-nav {
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: inline-block;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--header-bg);
+    border: 2px solid var(--border-color);
+  }
+
+  .hamburger .bar {
+    width: 28px;
+    height: 3px;
+    margin: 6px 0;
+    background: var(--header-text);
+    border-radius: 2px;
+  }
+
   .site-nav {
     overflow: hidden;
     max-height: 0;
     opacity: 0;
+    background: var(--nav-bg);
+    border-radius: 8px;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px var(--shadow);
   }
+  
   .site-nav.open {
-    max-height: 300px; /* enough to show links */
+    max-height: 400px;
     opacity: 1;
+    padding: 10px 0;
   }
 
-  /* Animate hamburger to X when open */
   .hamburger.is-active .bar:nth-child(1) {
-    transform: translateY(7px) rotate(45deg);
+    transform: translateY(9px) rotate(45deg);
   }
   .hamburger.is-active .bar:nth-child(2) {
     opacity: 0;
   }
   .hamburger.is-active .bar:nth-child(3) {
-    transform: translateY(-7px) rotate(-45deg);
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 15px 20px;
+    margin: 5px 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    text-align: center;
+    background: transparent;
+    color: var(--nav-text);
+    border: 1px solid transparent;
+  }
+
+  .site-nav a:hover {
+    background: var(--nav-hover);
+    border-color: var(--border-color);
   }
 }
